@@ -1,0 +1,17 @@
+---
+- hosts: all
+  tasks:
+    - name: copy_shell_script
+      copy:
+        src: /home/ubuntu/greater.sh
+        dest: /home/ubuntu
+    - name: change_permission
+      file:
+        dest: /home/ubuntu/greater.sh
+        mode: 0777
+    - name: execute
+      shell: /home/ubuntu/greater.sh
+      register: greater_out
+    - debug:
+        var: greater_out.stdout_lines
+                                

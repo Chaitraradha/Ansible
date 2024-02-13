@@ -1,0 +1,28 @@
+--- 
+- hosts: all
+  tasks:
+    - name: package_installation
+      when: ansible_distribution == "centos"
+      yum:
+        name: ["git", "wget", "maven"]
+        state: present
+    - name: package_installation_ubuntu
+      when: ansible_distribution == "Ubuntu"
+      apt:
+        name: ["git", "wget", "maven"]
+        state: present
+    - name: file_copy
+      copy: 
+        src: /home/ubuntu/f2.txt
+        dest: /home/ubuntu
+    - name: change_permission
+      file: 
+        dest: /home/ubuntu/f2.txt
+        mode: 0777
+        owner: root
+        group: root
+    - name: shell_commands
+      shell: ls
+      register: ls_out
+    - debug: 
+        var: ls_out.stdout_lines
