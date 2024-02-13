@@ -1,0 +1,12 @@
+- name: install_prometheus
+  apt: 
+    name: prometheus
+    state: present
+- name: start_prometheus
+  systemd:
+    name: prometheus
+    enabled: yes
+    state: started
+
+
+

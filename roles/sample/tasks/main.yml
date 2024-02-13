@@ -1,0 +1,11 @@
+---
+# tasks file for sample
+- name: copying_file      #for files static file copying 
+  copy:
+    src: sample1.txt
+    dest: /home/ubuntu/
+- name: dynamic_file      #for templates dynamic file copying
+  template:
+    src: sample1.j2
+    dest: /home/ubuntu/
+
